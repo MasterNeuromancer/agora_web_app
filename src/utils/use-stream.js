@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo } from 'react'
-import { useGlobalState, useGlobalMutation } from './container'
+import { useEffect, useMemo } from 'react';
+import { useGlobalState, useGlobalMutation } from './container';
 
 export default function useStream (client) {
   const stateCtx = useGlobalState()
