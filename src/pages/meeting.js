@@ -49,7 +49,7 @@ const useStyles = makeStyles({
 const calcGridArea = (index) => {
   let c = 1
   let r = 1
-  if (index != 0) {
+  if (index !== 0) {
     if (index < 6) {
       r = index % 3 + 1
       if (index > 2 && index < 6) {
@@ -97,7 +97,7 @@ const MeetingPage = () => {
       uid: 0,
       host: role === 'host'
     }
-  }, [stateCtx])
+  }, [stateCtx, role, channelName]);
 
   const history = routerCtx.history
 
@@ -112,7 +112,7 @@ const MeetingPage = () => {
       localClient && localClient.leave()
         .then(() => mutationCtx.clearAllStream())
     }
-  }, [localClient])
+  }, [localClient, mutationCtx])
 
   useEffect(() => {
     if (channelName && localClient._created && localClient._joined === false) {

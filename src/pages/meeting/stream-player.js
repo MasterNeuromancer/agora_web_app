@@ -51,7 +51,7 @@ export default function StreamPlayer (props) {
     return () => {
       clearInterval(timer)
     }
-  }, [stream])
+  }, [stream, props.local])
 
   const lockPlay = React.useRef(false)
 
