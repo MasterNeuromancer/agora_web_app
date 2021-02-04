@@ -164,6 +164,7 @@ const MeetingPage = () => {
     mutationCtx.setCurrentStream(stream)
   }
 
+  // eslint-disable-next-line
   const [otherStreams, placeholders] = useMemo(() => {
     const _otherStreams = stateCtx.streams.filter(it => it.getId() !== currentStream.getId())
     const _placeholders = Array.from(new Array(1), () => null)
@@ -199,7 +200,7 @@ const MeetingPage = () => {
         </div>}
       </div> : null }
       <div className="flex-container">
-        <div className="grid-layout position-related">
+        {/* <div className="grid-layout position-related">
           {placeholders.map((_, index) => (
             <StreamPlayer
               style={{ gridArea: calcGridArea(index) }}
@@ -213,7 +214,7 @@ const MeetingPage = () => {
             >
             </StreamPlayer>
           ))}
-        </div>
+        </div> */}
         <div className="grid-layout z-index-5">
           {stateCtx.currentStream
             ? <StreamPlayer
