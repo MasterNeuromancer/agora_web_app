@@ -16,7 +16,7 @@ export default class RTCClient {
   }
 
   createClient (data) {
-    this._client = AgoraRTC.createClient({ mode: data.mode, codec: data.codec })
+    this._client = AgoraRTC.createClient({ mode: data.mode, codec: 'vp8' })
     return this._client
   }
 
@@ -170,7 +170,7 @@ export default class RTCClient {
 
   getDevices () {
     return new Promise((resolve, reject) => {
-      if (!this._client) { this.createClient({ codec: 'h264', mode: 'live' }) }
+      if (!this._client) { this.createClient({ codec: 'vp8', mode: 'live' }) }
       this._createTmpStream().then(() => {
         AgoraRTC.getDevices((devices) => {
           this._localStream.close()
@@ -236,20 +236,16 @@ export default class RTCClient {
 
           data.uid = uid
 
-          this.enableDualStream().then(() => {
-            if (data.host) {
-              this.createRTCStream(data).then(() => {
-                this.setRemoteVideoStreamType(this._localStream, 0)
-                resolve()
-              }).catch((err) => {
-                reject(err)
-              })
-              return
-            }
-            resolve()
-          }).catch(err => {
-            reject(err)
-          })
+          if (data.host) {
+            this.createRTCStream(data).then(() => {
+              this.setRemoteVideoStreamType(this._localStream, 0)
+              resolve()
+            }).catch((err) => {
+              reject(err)
+            })
+            return
+          }
+          resolve()
         }, (err) => {
           this._joined = false
           reject(err)

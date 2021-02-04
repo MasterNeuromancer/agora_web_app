@@ -97,7 +97,7 @@ const MeetingPage = () => {
       uid: 0,
       host: role === 'host'
     }
-  }, [stateCtx, role, channelName]);
+  }, [stateCtx, channelName, role])
 
   const history = routerCtx.history
 
@@ -112,7 +112,8 @@ const MeetingPage = () => {
       localClient && localClient.leave()
         .then(() => mutationCtx.clearAllStream())
     }
-  }, [localClient, mutationCtx])
+    // eslint-disable-next-line
+  }, [localClient])
 
   useEffect(() => {
     if (channelName && localClient._created && localClient._joined === false) {
@@ -165,7 +166,7 @@ const MeetingPage = () => {
 
   const [otherStreams, placeholders] = useMemo(() => {
     const _otherStreams = stateCtx.streams.filter(it => it.getId() !== currentStream.getId())
-    const _placeholders = Array.from(new Array(16), () => null)
+    const _placeholders = Array.from(new Array(1), () => null)
     return [_otherStreams, _placeholders]
   }, [currentStream, stateCtx])
 

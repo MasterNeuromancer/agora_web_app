@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, withStyles } from '@material-ui/core/styles'
 import { useGlobalState, useGlobalMutation } from '../../utils/container'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
@@ -12,30 +12,31 @@ import useRouter from '../../utils/use-router'
 import { Link } from 'react-router-dom'
 import AgoraRTC from 'agora-rtc-sdk'
 
-// const CustomRadio = withStyles({
-//   root: {
-//     color: '#999999',
-//     '&$checked': {
-//       color: '#44A2FC'
-//     },
-//     '&:hover': {
-//       backgroundColor: 'inherit'
-//     }
-//   }
-// })(({ children, ...props }) => {
-//   return (
-//     <div className="role-item">
-//       <div className={`icon-${props.value}-${props.checked ? 'active' : 'inactive'}`}></div>
-//       <div className={`radio-row ${props.value}`}>
-//         <div className="custom-radio">
-//           <input type="radio" value={props.value} checked={props.checked} onChange={props.onChange} />
-//           <div className="checkmark"></div>
-//         </div>
-//         <Box flex="1" className={`role-name-${props.checked ? 'active' : 'inactive'}`}>{props.value}</Box>
-//       </div>
-//     </div>
-//   )
-// })
+// eslint-disable-next-line
+const CustomRadio = withStyles({
+  root: {
+    color: '#999999',
+    '&$checked': {
+      color: '#44A2FC'
+    },
+    '&:hover': {
+      backgroundColor: 'inherit'
+    }
+  }
+})(({ children, ...props }) => {
+  return (
+    <div className="role-item">
+      <div className={`icon-${props.value}-${props.checked ? 'active' : 'inactive'}`}></div>
+      <div className={`radio-row ${props.value}`}>
+        <div className="custom-radio">
+          <input type="radio" value={props.value} checked={props.checked} onChange={props.onChange} />
+          <div className="checkmark"></div>
+        </div>
+        <Box flex="1" className={`role-name-${props.checked ? 'active' : 'inactive'}`}>{props.value}</Box>
+      </div>
+    </div>
+  )
+})
 
 const useStyles = makeStyles(theme => ({
   fontStyle: {

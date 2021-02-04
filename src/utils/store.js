@@ -19,7 +19,7 @@ const defaultState = {
     },
     agoraClient: null,
     mode: 'live',
-    codec: 'h264',
+    codec: 'vp8',
     muteVideo: true,
     muteAudio: true,
     screen: false,
