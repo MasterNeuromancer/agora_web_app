@@ -61,6 +61,7 @@ export default function StreamPlayer (props) {
     stream.play(domId, { fit: 'cover' }, (errState) => {
       if (errState && errState.status !== 'aborted') {
         console.log('stream-player play failed ', domId)
+        console.log('errState ', errState);
         changeAutoplay(true)
       }
       lockPlay.current = false
